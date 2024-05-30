@@ -9,7 +9,7 @@ def classify_image(image):
     return dict(zip(categories, map(float, probabilities)))
 
 
-image = gr.Image(shape=(192, 192))
+image = gr.Image(height=192, width=192)
 label = gr.Label()
 examples = ["black.png", "grizzly.png", "teddy.png"]
 interface = gr.Interface(
