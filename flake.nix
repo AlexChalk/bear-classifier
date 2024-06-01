@@ -41,22 +41,23 @@
         default = self.packages.${system}.bear-classifier;
       };
 
-      # Shell for app dependencies.
-      #
-      #     nix develop
-      #
-      # Use this shell for developing your app.
-      devShells.${system}.default = pkgs.mkShell {
-        inputsFrom = [ self.packages.${system}.bear-classifier ];
-      };
-
-      # Shell for poetry.
-      #
-      #     nix develop .#poetry
-      #
-      # Use this shell for changes to pyproject.toml and poetry.lock.
-      devShells.${system}.poetry = pkgs.mkShell {
-        packages = [ pkgs.poetry ];
+      devShells.${system} = {
+        # Shell for app dependencies.
+        #
+        #     nix develop
+        #
+        # Use this shell for developing your app.
+        default = pkgs.mkShell {
+          inputsFrom = [ self.packages.${system}.bear-classifier ];
+        };
+        # Shell for poetry.
+        #
+        #     nix develop .#poetry
+        #
+        # Use this shell for changes to pyproject.toml and poetry.lock.
+        poetry = pkgs.mkShell {
+          packages = [ pkgs.poetry ];
+        };
       };
     };
 }
