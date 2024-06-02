@@ -21,6 +21,7 @@
           projectDir = self;
           preferWheels = false;
           overrides = overrides.withDefaults (final: prev: {
+            ruff = prev.ruff.override { preferWheel = true; };
             fastdownload = prev.fastdownload.overridePythonAttrs (
               old: {
                 nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
